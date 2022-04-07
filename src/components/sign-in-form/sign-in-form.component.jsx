@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import { useState } from 'react';
 
 import FormInput from '../form-input/form-input.component';
 
@@ -22,24 +22,21 @@ const SignInForm  = () => {
     const [formFields , setFormFields] = useState(defaultFormFields);
     const { email, password  } = formFields ;
 
-    console.log(formFields);
-
     const resetFormFields =() => {
         setFormFields(defaultFormFields);
     }
 
     const signInWithGoogle = async () => {
-        const {user} = await signInWithGooglePopup();
-        await  createUserDocumentFromAuth(user);
+      await signInWithGooglePopup();
+
+         
     }
 
     const handleSubmit =  async (event) => {
         event.preventDefault();
      
-        
-        
         try {
-            const response = await  signInAuthUserWithEmailAndPassword(email , password);
+            const {user} = await  signInAuthUserWithEmailAndPassword(email , password);
 
             resetFormFields();
           }
@@ -56,9 +53,7 @@ const SignInForm  = () => {
               }
               
           }
-      };
-
-            
+      }; 
 
     const handleChange = (event) => {
         const {name , value} = event.target;
@@ -70,9 +65,6 @@ const SignInForm  = () => {
         <h2>Already have an Account</h2>
             <span>Sign in with your E-mail and Password</span>
             <form onSubmit={handleSubmit}>
-
-          
-
          
             <FormInput 
             label="Email
@@ -100,8 +92,6 @@ const SignInForm  = () => {
             </form>
         </div>
           
-
-           
     );
 };
 
