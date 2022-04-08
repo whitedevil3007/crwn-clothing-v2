@@ -1,21 +1,25 @@
 import { signOut } from 'firebase/auth';
 
-import { Fragment , useContext } from 'react';
 
+import { Fragment , useContext } from 'react';
 import {Outlet , Link } from 'react-router-dom';
 
-import { ReactComponent as Moon } from '../../assets/arr.svg';
+import { ReactComponent as Moon } from '../../assets/shirt.svg';
+import CartIcon from '../../components/cart-icon/cart-icon.component';
 
+import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
 import { UserContext } from '../../context/user.context';
 
+import { CartContext } from '../../context/cart.context';
 import { signOutUser } from '../../utils/firebase/firebase.utils';
 
 import './navigation.styles.scss'
 
 const Nav = () => {
   const {currentUser } = useContext(UserContext);
-
-    return (
+  const { isCartOpen} = useContext(CartContext);
+  
+     return (
       <Fragment >
         <div className="Nav">
         <Link className='logo-container' to='/'> 
@@ -35,7 +39,9 @@ const Nav = () => {
              </Link>
              )
         }
+        <CartIcon/>
         </div>
+      { isCartOpen && <CartDropdown/>}
         </div>
         <Outlet/>
       </Fragment>
@@ -44,3 +50,5 @@ const Nav = () => {
 
 
   export default Nav;
+
+
