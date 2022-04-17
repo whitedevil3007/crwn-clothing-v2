@@ -8,8 +8,9 @@ import Authentication from './routes/authentication/authentication.component';
 
 import Shop from './routes/shop/shop.components'
 
-
-  const App = () => {
+import Checkout from './routes/checkouts/checkout.component.jsx';
+  
+const App = () => {
 
   return (
     <Routes>
@@ -17,6 +18,7 @@ import Shop from './routes/shop/shop.components'
     <Route index element={<Home/>} /> 
     <Route path='shop' element={<Shop/>} />
     <Route path='auth' element={<Authentication/>} />
+    <Route path='Checkout' element={<Checkout/>} />
       </Route>
 
     </Routes>
